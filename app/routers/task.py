@@ -13,7 +13,7 @@ async def task_by_id():
 async def create_task():
     pass
 
-@router.put("update_task")
+@router.put("/update_task")
 async def update_task():
     pass
 

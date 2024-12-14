@@ -1,3 +1,6 @@
+from typing import Annotated
+
+from fastapi.params import Path
 from pydantic import BaseModel
 
 class CreateTask(BaseModel):
@@ -21,9 +24,11 @@ class CreateUser(BaseModel):
     firstname :str
     lastname : str
     age : int
+    slug : str
 
 class UpdateUser(BaseModel):
     username: str
     firstname: str
     lastname: str
     age: int
+    id : int=None
