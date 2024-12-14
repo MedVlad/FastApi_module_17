@@ -1,23 +1,25 @@
-from typing import Annotated
+from typing import Annotated, Optional
 
 from fastapi.params import Path
 from pydantic import BaseModel
 
 class CreateTask(BaseModel):
-    name: str
-    description : str
-    price : int
-    image_url: str
-    stock : int
-    category : int
+
+    title : str
+    content : str
+    priority : int
+    user_id : int
+    completed : bool = False
+    slug : str
 
 class UpdateTask(BaseModel):
-    name: str
-    description : str
-    price : int
-    image_url: str
-    stock : int
-    category : int
+    id : int = None
+    title : str
+    content : str
+    priority : int
+    user_id : int
+    completed : bool = None
+    slug : str
 
 class CreateUser(BaseModel):
     username : str

@@ -22,6 +22,13 @@ async def get_all_users(db: Annotated[Session, Depends(get_db)]):
     users_all = db.scalars(select(User)).all()
     return users_all
 
+@router.get("/user_id/tasks")
+async def tasks_by_user_id(db: Annotated[Session, Depends(get_db)], user_id: int):
+    tasks = db.scalars(select(Task).where(Task.user_id == user_id)).all()
+    if tasks.__len__() == 0:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="There is no tasks found")
+    return tasks
 
 @router.get("/user_id")
 async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
